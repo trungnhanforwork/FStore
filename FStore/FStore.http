@@ -1,0 +1,6 @@
+@FStore_HostAddress = http://localhost:5008
+
+GET {{FStore_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
