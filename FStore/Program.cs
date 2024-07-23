@@ -1,8 +1,11 @@
 using FStore.Extensions;
 using Microsoft.AspNetCore.HttpOverrides;
+using Microsoft.EntityFrameworkCore;
 using NLog;
 using NLog.Extensions.Logging;
 using NLog.Web;
+using Repository;
+
 var builder = WebApplication.CreateBuilder(args);
 LogManager.Setup().LoadConfigurationFromSection(builder.Configuration);
 
@@ -17,6 +20,8 @@ try
     builder.Services.ConfigureIISIntegration();
     builder.Services.ConfigureLoggerService();
     builder.Services.AddControllers();
+    builder.Services.ConfigureRepositoryManager();
+    builder.Services.ConfigureSqlContext(builder.Configuration);
     
     var app = builder.Build();
 
