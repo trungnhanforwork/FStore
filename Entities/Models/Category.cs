@@ -5,7 +5,9 @@ namespace Entities.Models;
 
 public class Category
 {
+    [Key]
     [Column("CategoryId")]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public Guid Id { get; set; }
     
     [Required(ErrorMessage = "Category name is a required field.")]
