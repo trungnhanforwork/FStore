@@ -16,21 +16,21 @@ public class CategoriesController : ControllerBase
     }
 
     [HttpGet]
-    public IActionResult GetCategories()
+    public async Task<IActionResult> GetCategories()
     {
-        var categories = _service.CategoryService.GetAllCategories(trackChanges: false);
+        var categories = await _service.CategoryService.GetAllCategoriesAsync(trackChanges: false);
         return Ok(categories);
     }
     
     [HttpGet("{id:guid}", Name = "CategoryById")]
-    public IActionResult GetCategoryById(Guid id)
+    public async Task<IActionResult> GetCategoryById(Guid id)
     {
-        var categories = _service.CategoryService.GetCategoryById(id, trackChanges: false);
+        var categories = await _service.CategoryService.GetCategoryByIdAsync(id, trackChanges: false);
         return Ok(categories);
     }
 
     [HttpPost]
-    public IActionResult CreateCategory([FromBody] CategoryForCreationDto? categoryForCreationDto)
+    public async Task<IActionResult> CreateCategory([FromBody] CategoryForCreationDto? categoryForCreationDto)
     {
         if (categoryForCreationDto is null)
             return BadRequest("CategoryForCreationDto object is null");
@@ -38,19 +38,19 @@ public class CategoriesController : ControllerBase
         if (!ModelState.IsValid)
             return UnprocessableEntity(ModelState);
 
-        var newCategory = _service.CategoryService.CreateCategory(categoryForCreationDto, trackChanges: false);
+        var newCategory = await _service.CategoryService.CreateCategoryAsync(categoryForCreationDto, trackChanges: false);
         return CreatedAtRoute("CategoryById", new { id = newCategory.Id }, newCategory);
     }
 
     [HttpDelete("{id:guid}")]
-    public IActionResult DeleteCategory(Guid id)
+    public async Task<IActionResult> DeleteCategory(Guid id)
     {
-        _service.CategoryService.DeleteCategory(id, false);
+        await _service.CategoryService.DeleteCategoryAsync(id, false);
         return NoContent();
     }
 
     [HttpPut("{id:guid}")]
-    public IActionResult UpdateCategory(Guid id, [FromBody] CategoryForUpdateDto? categoryForUpdateDto)
+    public async Task<IActionResult> UpdateCategory(Guid id, [FromBody] CategoryForUpdateDto? categoryForUpdateDto)
     {
         if (categoryForUpdateDto is null)
             return BadRequest("CategoryForCreationDto object is null");
@@ -58,7 +58,7 @@ public class CategoriesController : ControllerBase
         if (!ModelState.IsValid)
             return UnprocessableEntity(ModelState);
         
-        _service.CategoryService.UpdateCategory(id, categoryForUpdateDto, true);
+        await _service.CategoryService.UpdateCategoryAsync(id, categoryForUpdateDto, true);
         return NoContent();
     }
 }

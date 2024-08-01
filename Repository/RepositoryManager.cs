@@ -18,4 +18,5 @@ public class RepositoryManager : IRepositoryManager
     public IProductRepository Product => _productRepository.Value;
     public ICategoryRepository Category => _categoryRepository.Value;
     public void Save() => _repositoryContext.SaveChanges();
+    public Task SaveAsync() => _repositoryContext.SaveChangesAsync();
 }

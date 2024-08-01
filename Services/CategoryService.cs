@@ -19,23 +19,23 @@ internal sealed class CategoryService : ICategoryService
         _logger = logger;
         _mapper = mapper;
     }
-    public IEnumerable<CategoryDto> GetAllCategories(bool trackChanges)
+    public async Task<IEnumerable<CategoryDto>> GetAllCategoriesAsync(bool trackChanges)
     {
         try
         {
-            var categories = _repository.Category.GetAllCategories(trackChanges);
+            var categories = await _repository.Category.GetAllCategoriesAsync(trackChanges);
             var categoriesDto = _mapper.Map<IEnumerable<CategoryDto>>(categories);
             return categoriesDto;
         }
         catch (Exception e)
         {
-            _logger.LogError($"Something went wrong in the {nameof(GetAllCategories)} service method {e}");
+            _logger.LogError($"Something went wrong in the {nameof(GetAllCategoriesAsync)} service method {e}");
             throw;
         }
     }
-    public CategoryDto GetCategoryById(Guid catergoryId, bool trackChanges)
+    public async Task<CategoryDto> GetCategoryByIdAsync(Guid catergoryId, bool trackChanges)
     {
-        var category = _repository.Category.GetCategoryById(catergoryId, trackChanges);
+        var category = await _repository.Category.GetCategoryByIdAsync(catergoryId, trackChanges);
         if (category is null)
         {
             throw new CategoryNotFoundException(catergoryId);
@@ -44,9 +44,10 @@ internal sealed class CategoryService : ICategoryService
         var categoryDto = _mapper.Map<CategoryDto>(category);
         return categoryDto;
     }
-    public CategoryDto CreateCategory(CategoryForCreationDto categoryForCreationDto, bool trackChanges)
+    public async Task<CategoryDto> CreateCategoryAsync(CategoryForCreationDto categoryForCreationDto, bool trackChanges)
     {
-        var existingCategory = _repository.Category.GetCategoryByName(categoryForCreationDto.Name, false);
+        
+        var existingCategory = await _repository.Category.GetCategoryByNameAsync(categoryForCreationDto.Name!, false);
         if (existingCategory is not null || categoryForCreationDto.Name == "")
         {
             throw new Exception("Invalid name or this name of category have already used in database");
@@ -54,29 +55,29 @@ internal sealed class CategoryService : ICategoryService
         
         var categoryEntity = _mapper.Map<Category>(categoryForCreationDto);
         _repository.Category.CreateCategory(categoryEntity);
-        _repository.Save();
+        await _repository.SaveAsync();
         var categoryToReturn = _mapper.Map<CategoryDto>(categoryEntity);
         return categoryToReturn; 
     }
-    public void DeleteCategory(Guid categoryId, bool trackChanges)
+    public async Task DeleteCategoryAsync(Guid categoryId, bool trackChanges)
     {
-        var existingCategory = _repository.Category.GetCategoryById(categoryId, trackChanges);
+        var existingCategory = await _repository.Category.GetCategoryByIdAsync(categoryId, trackChanges);
         if (existingCategory is null)
         {
             throw new CategoryNotFoundException(categoryId);
         }
         _repository.Category.DeleteCategory(existingCategory);
-        _repository.Save();
+        await _repository.SaveAsync();
     }
-    public void UpdateCategory(Guid categoryId, CategoryForUpdateDto categoryForUpdateDto , bool trackChanges)
+    public async Task UpdateCategoryAsync(Guid categoryId, CategoryForUpdateDto categoryForUpdateDto , bool trackChanges)
     {
-        var existingCategory = _repository.Category.GetCategoryById(categoryId, trackChanges);
+        var existingCategory = await _repository.Category.GetCategoryByIdAsync(categoryId, trackChanges);
         if (existingCategory is null)
         {
             throw new CategoryNotFoundException(categoryId);
         }
 
         _mapper.Map(categoryForUpdateDto, existingCategory);
-        _repository.Save();
+        await _repository.SaveAsync();
     }
 }

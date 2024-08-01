@@ -1,5 +1,6 @@
 using Contracts;
 using Entities.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Repository;
 
@@ -8,22 +9,18 @@ public class CategoryRepository: RepositoryBase<Category>, ICategoryRepository
     public CategoryRepository(RepositoryContext repositoryContext) : base(repositoryContext)
     {
     }
-
-    public IEnumerable<Category> GetAllCategories(bool trackChanges)
+    public async Task<IEnumerable<Category>> GetAllCategoriesAsync(bool trackChanges)
     {
-        return FindAll(trackChanges).OrderBy(c => c.Name).ToList();
+        return await FindAll(trackChanges).OrderBy(c => c.Name).ToListAsync();
     }
-
-    public Category? GetCategoryById(Guid categoryId, bool trackChanges)
+    public async Task<Category?> GetCategoryByIdAsync(Guid categoryId, bool trackChanges)
     {
-        return FindByCondition(c => c.Id == categoryId, trackChanges).SingleOrDefault();
+        return await FindByCondition(c => c.Id == categoryId, trackChanges).SingleOrDefaultAsync();
     }
-    
-    public Category? GetCategoryByName(string name, bool trackChanges)
+    public Task<Category?> GetCategoryByNameAsync(string name, bool trackChanges)
     {
-        return FindByCondition(c => c.Name == name, trackChanges).SingleOrDefault();
+        return FindByCondition(c => c.Name == name, trackChanges).SingleOrDefaultAsync();
     }
-    
 
     public void CreateCategory(Category category) => Create(category);
 

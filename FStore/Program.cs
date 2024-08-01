@@ -1,58 +1,42 @@
+using Contracts;
 using FStore.Extensions;
 using Microsoft.AspNetCore.HttpOverrides;
-using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc;
 using NLog;
 using NLog.Extensions.Logging;
-using NLog.Web;
-using Repository;
+
 
 var builder = WebApplication.CreateBuilder(args);
 LogManager.Setup().LoadConfigurationFromSection(builder.Configuration);
-
-var logger = LogManager.GetCurrentClassLogger();
-try
+// Add services to the container.
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+builder.Services.ConfigureCors();
+builder.Services.ConfigureIISIntegration();
+builder.Services.ConfigureLoggerService();
+builder.Services.Configure<ApiBehaviorOptions>(options =>
 {
-    logger.Debug("init main");
-    // Add services to the container.
-    builder.Services.AddEndpointsApiExplorer();
-    builder.Services.AddSwaggerGen();
-    builder.Services.ConfigureCors();
-    builder.Services.ConfigureIISIntegration();
-    builder.Services.ConfigureLoggerService();
-    builder.Services.AddControllers();
-    builder.Services.ConfigureRepositoryManager();
-    builder.Services.ConfigureSqlContext(builder.Configuration);
-    
-    var app = builder.Build();
+    options.SuppressModelStateInvalidFilter = true;
+});
+builder.Services.AddControllers()
+    .AddApplicationPart(typeof(FStore.Presentation.AssemblyReference).Assembly);
+builder.Services.ConfigureRepositoryManager();
+builder.Services.ConfigureServiceManager();
+builder.Services.AddAutoMapper(typeof(Program));
+builder.Services.ConfigureSqlContext(builder.Configuration);
 
-    // Configure the HTTP request pipeline.
-    if (app.Environment.IsDevelopment())
-    {
-        app.UseDeveloperExceptionPage();
-    }
-    else
-    {
-        app.UseHsts();
-    }
+var app = builder.Build();
+var logger = app.Services.GetRequiredService<ILoggerManager>();
+app.ConfigureExceptionHandler(logger);
+if (app.Environment.IsProduction())
+    app.UseHsts();
 
-    app.UseHttpsRedirection();
-    app.UseStaticFiles();
-    app.UseForwardedHeaders(new ForwardedHeadersOptions
-    {
-        ForwardedHeaders = ForwardedHeaders.All
-    });
-    app.UseCors("CorsPolicy");
-    app.MapControllers();
-    app.Run();
-}
-catch (Exception exception)
+app.UseHttpsRedirection();
+app.UseStaticFiles();
+app.UseForwardedHeaders(new ForwardedHeadersOptions
 {
-    // NLog: catch setup errors
-    logger.Error(exception, "Stopped program because of exception");
-    throw;
-}
-finally
-{
-    // Ensure to flush and stop internal timers/threads before application-exit (Avoid segmentation fault on Linux)
-    LogManager.Shutdown();
-}
+    ForwardedHeaders = ForwardedHeaders.All
+});
+app.UseCors("CorsPolicy");
+app.MapControllers();
+app.Run();
