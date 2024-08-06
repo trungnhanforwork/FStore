@@ -18,6 +18,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FStore.Presentation", "FSto
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared", "Shared\Shared.csproj", "{D7F442FD-B028-4CC0-BE69-C3E2583C9CD9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileService", "FileService\FileService.csproj", "{58578354-385D-401E-A806-6198C0472217}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Helper", "Helper\Helper.csproj", "{C6EA46D7-3C76-40EC-AD07-C7F39ADA824F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -60,5 +64,13 @@ Global
 		{D7F442FD-B028-4CC0-BE69-C3E2583C9CD9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D7F442FD-B028-4CC0-BE69-C3E2583C9CD9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D7F442FD-B028-4CC0-BE69-C3E2583C9CD9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{58578354-385D-401E-A806-6198C0472217}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58578354-385D-401E-A806-6198C0472217}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58578354-385D-401E-A806-6198C0472217}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{58578354-385D-401E-A806-6198C0472217}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C6EA46D7-3C76-40EC-AD07-C7F39ADA824F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C6EA46D7-3C76-40EC-AD07-C7F39ADA824F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C6EA46D7-3C76-40EC-AD07-C7F39ADA824F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C6EA46D7-3C76-40EC-AD07-C7F39ADA824F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

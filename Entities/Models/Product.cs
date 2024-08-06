@@ -5,6 +5,8 @@ namespace Entities.Models;
 
 public class Product
 {
+    [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     [Column("ProductId")]
     public Guid Id { get; set; }
 
@@ -27,5 +29,5 @@ public class Product
     [Required]
     [ForeignKey(nameof(Category))]
     public Guid CategoryId { get; set; }
-    public Category Category { get; set; }
+    public Category? Category { get; set; }
 }
