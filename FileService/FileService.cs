@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Hosting;
 using Service.Contracts;
 
-namespace Services;
+namespace FileService;
 
 public sealed class FileManager : IFileManager
 {

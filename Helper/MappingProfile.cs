@@ -2,7 +2,7 @@ using AutoMapper;
 using Entities.Models;
 using Shared.DataTransferObjects;
 
-namespace FStore;
+namespace Helper;
 
 public class MappingProfile : Profile
 {
@@ -11,5 +11,8 @@ public class MappingProfile : Profile
         CreateMap<Category, CategoryDto>();
         CreateMap<CategoryForCreationDto, Category>();
         CreateMap<CategoryForUpdateDto, Category>();
+        CreateMap<Product, ProductDto>();
+        CreateMap<ProductForUpdateDto, Product>();
+        CreateMap<ProductForCreationDto, Product>();
     }
 }
