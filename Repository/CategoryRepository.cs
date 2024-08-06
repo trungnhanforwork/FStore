@@ -17,9 +17,9 @@ public class CategoryRepository: RepositoryBase<Category>, ICategoryRepository
     {
         return await FindByCondition(c => c.Id == categoryId, trackChanges).SingleOrDefaultAsync();
     }
-    public Task<Category?> GetCategoryByNameAsync(string name, bool trackChanges)
+    public async Task<Category?> GetCategoryByNameAsync(string name, bool trackChanges)
     {
-        return FindByCondition(c => c.Name == name, trackChanges).SingleOrDefaultAsync();
+        return await FindByCondition(c => c.Name == name, trackChanges).SingleOrDefaultAsync();
     }
 
     public void CreateCategory(Category category) => Create(category);

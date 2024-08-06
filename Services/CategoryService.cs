@@ -40,7 +40,7 @@ internal sealed class CategoryService : ICategoryService
         {
             throw new CategoryNotFoundException(catergoryId);
         }
-
+        
         var categoryDto = _mapper.Map<CategoryDto>(category);
         return categoryDto;
     }

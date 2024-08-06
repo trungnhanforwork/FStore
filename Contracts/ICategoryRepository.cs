@@ -12,4 +12,5 @@ public interface ICategoryRepository
     void CreateCategory(Category category);
 
     void DeleteCategory(Category category);
+   
 }
