@@ -30,4 +30,7 @@ public static class ServiceExtensions
         services.AddSqlServer<RepositoryContext>(configuration.GetConnectionString("DefaultConnection"));
     public static void ConfigureServiceManager(this IServiceCollection services) =>
         services.AddScoped<IServiceManager, ServiceManager>();
+
+    public static void ConfigureFileService(this IServiceCollection services) =>
+        services.AddScoped<IFileManager, FileManager>();
 }

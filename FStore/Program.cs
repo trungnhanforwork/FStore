@@ -1,5 +1,6 @@
 using Contracts;
 using FStore.Extensions;
+using Helper;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Mvc;
 using NLog;
@@ -22,8 +23,9 @@ builder.Services.AddControllers()
     .AddApplicationPart(typeof(FStore.Presentation.AssemblyReference).Assembly);
 builder.Services.ConfigureRepositoryManager();
 builder.Services.ConfigureServiceManager();
-builder.Services.AddAutoMapper(typeof(Program));
+builder.Services.AddAutoMapper(typeof(MappingProfile).Assembly);
 builder.Services.ConfigureSqlContext(builder.Configuration);
+builder.Services.ConfigureFileService();
 
 var app = builder.Build();
 var logger = app.Services.GetRequiredService<ILoggerManager>();
