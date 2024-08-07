@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="d07925f9-5637-42e9-bf1a-1288e38d71eb" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../Entities/ErrorModel/ErrorDetails.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Entities/Exceptions/CategoryNotFoundException.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Entities/Exceptions/NotFoundException.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.idea.FStore.dir/.idea/.name" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.idea.FStore.dir/.idea/indexLayout.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.idea.FStore.dir/.idea/projectSettingsUpdater.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.idea.FStore.dir/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.idea.FStore.dir/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AssemblyReference.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Controllers/CategoriesController.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FStore.Presentation.csproj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FStore/Extensions/ExceptionMiddlewareExtensions.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FStore/MappingProfile.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FStore/Migrations/20240724042626_AutoCreateIdForEntity.Designer.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FStore/Migrations/20240724042626_AutoCreateIdForEntity.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Services/ProductService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Services/ServiceManager.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Shared/DataTransferObjects/CategoryDto.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Shared/DataTransferObjects/CategoryForCreationDto.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Shared/Shared.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Contracts/Contracts.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../Contracts/Contracts.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Contracts/ICategoryRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Contracts/ICategoryRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Entities/Entities.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../Entities/Entities.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Entities/Models/Category.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Entities/Models/Category.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Entities/Models/Product.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Entities/Models/Product.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FStore.sln" beforeDir="false" afterPath="$PROJECT_DIR$/../FStore.sln" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FStore/Controllers/WeatherForecastController.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FStore/Extensions/ServiceExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../FStore/Extensions/ServiceExtensions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FStore/FStore.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../FStore/FStore.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FStore/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../FStore/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FStore/internal_logs/internallog.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../FStore/internal_logs/internallog.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Repository/CategoryRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Repository/CategoryRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Service.Contracts/ICategoryService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Service.Contracts/ICategoryService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Service.Contracts/IProductService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Service.Contracts/IProductService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Service.Contracts/Service.Contracts.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../Service.Contracts/Service.Contracts.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Services/CategoryService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Services/CategoryService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Services/Services.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../Services/Services.csproj" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;trungnhanforwork&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/trungnhanforwork/FStore.git&quot;,
+    &quot;accountId&quot;: &quot;d7a6ac7c-25d7-4597-8223-1800b4462028&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 1
+}</component>
+  <component name="ProjectId" id="2jggGMKTxnKlsnmeLRFsZiERkwU" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="d07925f9-5637-42e9-bf1a-1288e38d71eb" name="Changes" comment="" />
+      <created>1721814036493</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1721814036493</updated>
+      <workItem from="1721814037684" duration="631000" />
+      <workItem from="1721832407937" duration="3000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
+  <component name="VcsManagerConfiguration">
+    <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+</project>

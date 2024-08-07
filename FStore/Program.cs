@@ -26,6 +26,8 @@ builder.Services.ConfigureServiceManager();
 builder.Services.AddAutoMapper(typeof(MappingProfile).Assembly);
 builder.Services.ConfigureSqlContext(builder.Configuration);
 builder.Services.ConfigureFileService();
+builder.Services.AddAuthentication();
+builder.Services.ConfigureIdentity();
 
 var app = builder.Build();
 var logger = app.Services.GetRequiredService<ILoggerManager>();
@@ -40,5 +42,7 @@ app.UseForwardedHeaders(new ForwardedHeadersOptions
     ForwardedHeaders = ForwardedHeaders.All
 });
 app.UseCors("CorsPolicy");
+app.UseAuthentication();
+app.UseAuthorization();
 app.MapControllers();
 app.Run();
