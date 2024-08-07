@@ -5,6 +5,7 @@ using Entities.Models;
 using Microsoft.AspNetCore.Http;
 using Service.Contracts;
 using Shared.DataTransferObjects;
+using Shared.RequestFeatures;
 
 namespace Services;
 
@@ -23,11 +24,11 @@ internal sealed class ProductSevice : IProductService
         _fileManager = fileManager;
     }
     
-    public async Task<IEnumerable<ProductDto>> GetAllProductsAsync(bool trackChanges)
+    public async Task<(IEnumerable<ProductDto> productDtos, MetaData metaData)> GetAllProductsAsync(bool trackChanges, ProductParameters productParameters)
     {
-        var products = await _repository.Product.GetAllProductsAsync(trackChanges);
-        var productDtos = _mapper.Map<IEnumerable<ProductDto>>(products);
-        return productDtos;
+        var productsWithMetaData = await _repository.Product.GetAllProductsAsync(trackChanges: trackChanges, productParameters: productParameters);
+        var productDtos = _mapper.Map<IEnumerable<ProductDto>>(productsWithMetaData);
+        return (productDtos, productsWithMetaData.MetaData);
     }
 
     public async Task<ProductDto> GetProductByIdAsync(Guid id, bool trackChanges)
@@ -64,6 +65,8 @@ internal sealed class ProductSevice : IProductService
             imageName = await _fileManager.SaveFileAsync(productForCreationDto.Thumbnail);
             var productEntity = _mapper.Map<Product>(productForCreationDto);
             productEntity.Thumbnail = imageName;
+            productEntity.CreatedAt = DateTime.UtcNow;
+            productEntity.UpdatedAt = DateTime.UtcNow;
             
             // Create the product and save to database
             _repository.Product.CreateProduct(productEntity);
@@ -90,7 +93,7 @@ internal sealed class ProductSevice : IProductService
         {
             throw new ProductNotFoundException(id);
         }
-        var thumnails = existingProduct.Thumbnail;
+        var oldThumnail = existingProduct.Thumbnail;
         // Map the updated fields from the DTO to the existing product
         _mapper.Map(productForUpdateDto, existingProduct);
         
@@ -109,9 +112,9 @@ internal sealed class ProductSevice : IProductService
         }
         else
         {
-            existingProduct.Thumbnail = thumnails;
+            existingProduct.Thumbnail = oldThumnail;
         }
-        
+        existingProduct.UpdatedAt = DateTime.UtcNow;
         // Save changes to the database
         await _repository.SaveAsync();
     }
