@@ -1,6 +1,8 @@
+using System.Text.Json;
 using Microsoft.AspNetCore.Mvc;
 using Service.Contracts;
 using Shared.DataTransferObjects;
+using Shared.RequestFeatures;
 
 namespace FStore.Presentation.Controllers;
 
@@ -15,6 +17,14 @@ public class ProductsController : ControllerBase
         _service = service;
     }
     
+    [HttpGet]
+    public async Task<IActionResult> GetAllProducts([FromQuery] ProductParameters productParameters)
+    {
+        var pagedResult = await _service.ProductService.GetAllProductsAsync(false, productParameters: productParameters);
+        Response.Headers.Add("X-Pagination", JsonSerializer.Serialize(pagedResult.metaData));
+        return Ok(pagedResult.productDtos);
+    }
+    
     [HttpGet("{id:guid}", Name = "ProductById")]
     public async Task<IActionResult> GetProductById(Guid id)
     {
@@ -22,10 +32,10 @@ public class ProductsController : ControllerBase
         return Ok(productDto);
     }
 
-    [HttpGet]
-    public async Task<IActionResult> GetAllProducts()
+    [HttpGet("category/{categoryId:guid}")]
+    public async Task<IActionResult> GetProductsByCategoryName(Guid categoryId)
     {
-        var products = await _service.ProductService.GetAllProductsAsync(false);
+        var products = await _service.ProductService.GetProductsByCategory(categoryId, trackChanges: false);
         return Ok(products);
     }
 
