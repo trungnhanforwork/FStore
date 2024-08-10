@@ -28,7 +28,7 @@ builder.Services.ConfigureSqlContext(builder.Configuration);
 builder.Services.ConfigureFileService();
 builder.Services.AddAuthentication();
 builder.Services.ConfigureIdentity();
-
+builder.Services.ConfigureJWT(builder.Configuration);
 var app = builder.Build();
 var logger = app.Services.GetRequiredService<ILoggerManager>();
 app.ConfigureExceptionHandler(logger);

@@ -1,9 +1,13 @@
+using System.Text;
 using Contracts;
 using Entities.Models;
 using FileService;
 using LoggerService;
+using Microsoft.AspNetCore.Authentication.BearerToken;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using Repository;
 using Service.Contracts;
 using Services;
@@ -44,10 +48,34 @@ public static class ServiceExtensions
                 o.Password.RequireLowercase = false;
                 o.Password.RequireUppercase = false;
                 o.Password.RequireNonAlphanumeric = false;
-                o.Password.RequiredLength = 10;
+                o.Password.RequiredLength = 8;
                 o.User.RequireUniqueEmail = true;
             })
             .AddEntityFrameworkStores<RepositoryContext>()
             .AddDefaultTokenProviders();
+    }
+
+    public static void ConfigureJWT(this IServiceCollection services, IConfiguration configuration)
+    {
+        var jwtSettings = configuration.GetSection("JwtSettings");
+        var secretKey = Environment.GetEnvironmentVariable("SECRET") != null ? Environment.GetEnvironmentVariable("SECRET") : "TrungNhanSecretKey";
+        services.AddAuthentication(options =>
+        {
+            options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+            options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+        }).AddJwtBearer(options =>
+        {
+            options.TokenValidationParameters = new TokenValidationParameters
+            {
+                ValidateIssuer = true,
+                ValidateAudience = true,
+                ValidateLifetime = true,
+                ValidateIssuerSigningKey = true,
+                ValidIssuer = jwtSettings["validIssuer"],
+                ValidAudience = jwtSettings["validAudience"],
+                IssuerSigningKey = new
+                    SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey!))
+            };
+        });
     }
 }
