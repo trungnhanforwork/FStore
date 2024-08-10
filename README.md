@@ -19,6 +19,7 @@ FStore is a .NET 8 Web API project designed to manage a store's product catalog.
 - **Category-Based Product Retrieval**: Retrieve products based on category names.
 - **File Upload**: Upload and associate images with products.
 - **Pagination**: Paginate product listings.
+- **Authentication & Authorization: Using token and refresh token
 - **Error Handling**: Centralized error handling for API responses.
 - **Logging**: Integrated logging using NLog.
 - **Clean Architecture**: Separation of concerns through layered architecture.

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Repository;
 
@@ -11,9 +12,11 @@ using Repository;
 namespace FStore.Migrations
 {
     [DbContext(typeof(RepositoryContext))]
-    partial class RepositoryContextModelSnapshot : ModelSnapshot
+    [Migration("20240810041804_AdditionalUserFiledsForRefreshToken")]
+    partial class AdditionalUserFiledsForRefreshToken
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -187,25 +190,25 @@ namespace FStore.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "45781fcd-f4ba-426e-b0e8-641ffa2051bd",
+                            Id = "a1a6e318-ae6a-46e9-b58e-e8b85a75121a",
                             Name = "Manager",
                             NormalizedName = "MANAGER"
                         },
                         new
                         {
-                            Id = "d4113ae1-bd08-4ff6-9f44-af08b1f5d603",
+                            Id = "fda8fa09-f7f5-47f9-9a9e-2a8e859d0c79",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         },
                         new
                         {
-                            Id = "e1aeb80e-fe63-40a3-8074-73e7fcca2428",
+                            Id = "428f6fa2-52e0-4a3b-a1a4-f0fcfd118f65",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "2e86fd9b-5dc6-4a22-b869-3bf62814e4d5",
+                            Id = "5b26ff40-2cdb-4f07-93b8-c6da2fd7b7f9",
                             Name = "Seller",
                             NormalizedName = "SELLER"
                         });
