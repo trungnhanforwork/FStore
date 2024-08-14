@@ -13,6 +13,7 @@ public class ServiceManager : IServiceManager
     private readonly Lazy<ICategoryService> _categoryService;
     private readonly Lazy<IProductService> _productService;
     private readonly Lazy<IAuthenticationService> _authenticationService;
+    
 
     
     public ServiceManager(IRepositoryManager repositoryManager, ILoggerManager logger, IMapper mapper, IFileManager fileManager, UserManager<User> userManager, IConfiguration configuration)
